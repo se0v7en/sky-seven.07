@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的个人主页</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <!-- 顶部导航 -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <a href="#welcome" class="nav-item active">01 欢迎</a>
+      <a href="#info" class="nav-item">02 关于我</a>
+      <a href="#style" class="nav-item">03 风格</a>
+      <a href="#price" class="nav-item">04 价格</a>
+      <a href="#notice" class="nav-item">05 须知</a>
+      <a href="#intro" class="nav-item">06 自介话术</a>
+      <a href="#reviews" class="nav-item">07 板评</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 欢迎页 -->
+    <section id="welcome" class="section">
+      <div class="card glass">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          STATUS: ONLINE
+        </div>
+
+        <div class="profile-row">
+          <div class="avatar"></div>
+          <div class="profile-main">
+            <h1 class="name">你的名字</h1>
+            <p class="tagline">一句话介绍自己</p>
+            <div class="tags">
+              <span class="tag">#标签1</span>
+              <span class="tag">#标签2</span>
+              <span class="tag">#标签3</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-item">
+            <span class="label">IP 属地</span>
+            <span class="value">城市 / 地区</span>
+          </div>
+          <div class="info-item">
+            <span class="label">身份</span>
+            <span class="value">设计师 / 学生 / 创作者</span>
+          </div>
+        </div>
+
+        <div class="quote">
+          在这里写一句你的个性宣言。
+        </div>
+
+        <a href="#info" class="btn-primary">开始了解</a>
+      </div>
+    </section>
+
+    <!-- 个人信息 -->
+    <section id="info" class="section">
+      <div class="card glass">
+        <h2 class="section-title">关于我</h2>
+
+        <div class="info-table">
+          <div class="info-table-row">
+            <span class="info-label">姓名 / 昵称</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">年龄</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">星座</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">MBTI</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">一句话介绍</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">个人特色</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">所在地</span>
+            <span class="info-value">请填写</span>
+          </div>
+          <div class="info-table-row">
+            <span class="info-label">联系方式</span>
+            <span class="info-value">请填写</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 风格展示 -->
+    <section id="style" class="section">
+      <div class="card glass">
+        <h2 class="section-title">我的风格</h2>
+
+        <div class="tags">
+          <span class="tag">#风格关键词1</span>
+          <span class="tag">#风格关键词2</span>
+          <span class="tag">#风格关键词3</span>
+          <span class="tag">#风格关键词4</span>
+        </div>
+
+        <p class="style-desc">
+          在这里描述你的审美、创作风格、喜欢的色彩或表达方式。
+        </p>
+
+        <div class="works">
+          <div class="work-card"></div>
+          <div class="work-card"></div>
+          <div class="work-card"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 价格 -->
+    <section id="price" class="section">
+      <div class="card glass">
+        <h2 class="section-title">价格表</h2>
+
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>基础款</h3>
+            <div class="price-amount">¥XX</div>
+            <ul class="price-features">
+              <li>简单描述服务内容</li>
+              <li>交付时间说明</li>
+              <li>修改次数限制</li>
+            </ul>
+          </div>
+          <div class="price-card featured">
+            <div class="price-badge">推荐</div>
+            <h3>进阶款</h3>
+            <div class="price-amount">¥XX</div>
+            <ul class="price-features">
+              <li>详细描述服务内容</li>
+              <li>更快交付时间</li>
+              <li>包含更多修改</li>
+            </ul>
+          </div>
+          <div class="price-card">
+            <h3>高级款</h3>
+            <div class="price-amount">¥XX</div>
+            <ul class="price-features">
+              <li>完整服务内容</li>
+              <li>优先排单</li>
+              <li>终身售后</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 须知 -->
+    <section id="notice" class="section">
+      <div class="card glass">
+        <h2 class="section-title">下单须知</h2>
+
+        <div class="notice-list">
+          <div class="notice-item">
+            <span class="notice-num">01</span>
+            <div class="notice-content">
+              <h3>下单流程</h3>
+              <p>在这里写你的下单流程说明。比如：先私信确认需求 -> 支付定金 -> 开始制作 -> 交付成品 -> 尾款结算。</p>
+            </div>
+          </div>
+          <div class="notice-item">
+            <span class="notice-num">02</span>
+            <div class="notice-content">
+              <h3>排单说明</h3>
+              <p>在这里写排单规则。比如：当前排单周期为X天，急单请备注并加收X%加急费。</p>
+            </div>
+          </div>
+          <div class="notice-item">
+            <span class="notice-num">03</span>
+            <div class="notice-content">
+              <h3>退款政策</h3>
+              <p>在这里写退款规则。比如：定金支付后不支持退款，成品确认后不可退换。</p>
+            </div>
+          </div>
+          <div class="notice-item">
+            <span class="notice-num">04</span>
+            <div class="notice-content">
+              <h3>交付方式</h3>
+              <p>在这里写交付方式。比如：通过网盘链接交付原图/文件，保留源文件X天。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 自介话术 -->
+    <section id="intro" class="section">
+      <div class="card glass">
+        <h2 class="section-title">自我介绍 & 话术</h2>
+
+        <div class="intro-block">
+          <h3 class="intro-block-title">个人介绍</h3>
+          <p>在这里写你的个人介绍。可以写你的经历、擅长什么、为什么做这个、你的理念是什么。</p>
+        </div>
+
+        <div class="intro-block">
+          <h3 class="intro-block-title">常用话术</h3>
+          <p>在这里写你的常用回复话术。比如：</p>
+          <ul class="script-list">
+            <li>欢迎语：你好呀，感谢来访！有什么可以帮到你的？</li>
+            <li>报价语：亲，这个需求我看看哦，大概XX左右~</li>
+            <li>催付语：宝子，定金付一下就可以排单啦！</li>
+            <li>交付语：成品出来啦，快看看满不满意~</li>
+          </ul>
+        </div>
+
+        <div class="intro-block">
+          <h3 class="intro-block-title">接单状态</h3>
+          <p>在这里写你当前的接单状态。比如：接单中 / 排单中 / 暂停接单等。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 板评链接 -->
+    <section id="reviews" class="section">
+      <div class="card glass">
+        <h2 class="section-title">板评链接</h2>
+
+        <div class="review-links">
+          <a href="#" class="review-link-btn">板评链接 01</a>
+          <a href="#" class="review-link-btn">板评链接 02</a>
+          <a href="#" class="review-link-btn">板评链接 03</a>
+          <a href="#" class="review-link-btn">板评链接 04</a>
+          <a href="#" class="review-link-btn">板评链接 05</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>你的名字 · 个人主页</p>
+    <p class="footer-sub">用爱心和代码制作</p>
+  </footer>
+
+</body>
+</html>
