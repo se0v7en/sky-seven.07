@@ -219,7 +219,7 @@ main {
   font-size: 14px;
 }
 
-/* 风格展示 */
+/* 作品展示 */
 .works {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -231,9 +231,10 @@ main {
   background: rgba(60, 10, 10, 0.3);
   border: 1px solid rgba(200, 80, 80, 0.12);
   border-radius: 12px;
+  background-image: linear-gradient(135deg, rgba(120, 30, 30, 0.25), rgba(60, 10, 10, 0.15));
 }
 
-/* 价格 */
+/* 价格表 */
 .price-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -269,4 +270,143 @@ main {
 .price-tier {
   display: block;
   font-size: 13px;
-  color: rgba(255, 180,
+  color: rgba(255, 180, 180, 0.6);
+  margin-bottom: 6px;
+}
+
+.price-amount {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffcccc;
+  margin-bottom: 14px;
+}
+
+.price-list {
+  list-style: none;
+  text-align: left;
+  font-size: 13px;
+  color: rgba(255, 200, 200, 0.75);
+}
+
+.price-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(200, 80, 80, 0.1);
+}
+
+.price-list li:last-child {
+  border-bottom: none;
+}
+
+.price-note {
+  font-size: 12px;
+  color: rgba(255, 180, 180, 0.5);
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* 须知 */
+.notice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notice-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.notice-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(192, 57, 43, 0.2);
+  color: #ff9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.notice-content h4 {
+  font-size: 14px;
+  color: #ffcccc;
+  margin-bottom: 4px;
+}
+
+.notice-content p {
+  font-size: 13px;
+  color: rgba(255, 200, 200, 0.65);
+}
+
+/* 自介 */
+.intro-block {
+  margin-bottom: 18px;
+}
+
+.intro-block:last-child {
+  margin-bottom: 0;
+}
+
+.intro-block h4 {
+  font-size: 14px;
+  color: #ffcccc;
+  margin-bottom: 6px;
+}
+
+.intro-block p {
+  font-size: 14px;
+  color: rgba(255, 200, 200, 0.7);
+}
+
+/* 板评链接 */
+.review-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.review-link {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(200, 80, 80, 0.25);
+  border-radius: 8px;
+  color: rgba(255, 200, 200, 0.8);
+  text-decoration: none;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.review-link:hover {
+  background: rgba(192, 57, 43, 0.2);
+}
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 12px;
+  color: rgba(255, 180, 180, 0.35);
+}
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+  .works {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-name {
+    font-size: 26px;
+  }
+
+  .hero-info {
+    gap: 16px;
+  }
+}
