@@ -1,256 +1,296 @@
-target="works">作品</a >
-      <a class="nav-item" data-target="pricing">价格</a >
-      <a class="nav-item" data-target="notice">须知</a >
-      <a class="nav-item" data-target="intro">自介</a >
-      <a class="nav-item" data-target="reviews">板评</a >
-    </div>
-  </nav>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的主页</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <main>
+  <!-- ===== 音乐播放按钮（固定最上层，不影响排版） ===== -->
+  <div class="music-control" id="musicControl">
+    <span class="music-note">♪</span>
+    <button class="music-btn" id="musicBtn" title="播放/暂停">▶</button>
+  </div>
 
-    <!-- 欢迎页 -->
-    <section id="welcome" class="section active-section">
-      <div class="card hero-card">
-        <div class="status-text">
-          <span class="status-dot"></span> 在线中
-        </div>
-        <h1 class="hero-name">你的名字</h1>
-        <p class="hero-tagline">接单 / 约稿 / 合作</p >
-        <div class="hero-tags">
-          <span class="tag">插画</span>
-          <span class="tag">设计</span>
-          <span class="tag">建模</span>
-          <span class="tag">后期</span>
-        </div>
-        <div class="hero-info">
-          <div class="hero-info-item">
-            <span class="info-label">坐标</span>
-            <span class="info-value">国内</span>
-          </div>
-          <div class="hero-info-item">
-            <span class="info-label">档期</span>
-            <span class="info-value">开放中</span>
-          </div>
-          <div class="hero-info-item">
-            <span class="info-label">回复</span>
-            <span class="info-value">24h内</span>
-          </div>
-        </div>
-        <blockquote class="hero-quote">
-          用心对待每一个作品，欢迎私信沟通需求。
-        </blockquote>
-        <a class="btn-primary" href=" ">查看价格</a >
-      </div>
-    </section>
+  <!-- 背景音乐（可替换 src） -->
+  <audio id="bgm" loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+    <!-- 替换为你的音乐链接，如：
+    <source src="https://你的域名/music.mp3" type="audio/mpeg">
+    -->
+  </audio>
 
-    <!-- 信息页 -->
-    <section id="info" class="section">
-      <h2 class="section-title">基本信息</h2>
-      <p class="section-desc">常用联系方式与基本资料</p >
-      <div class="card">
-        <div class="info-table">
-          <div class="info-table-row">
-            <span class="info-label">昵称</span>
-            <span class="info-value">你的名字</span>
-          </div>
-          <div class="info-table-row">
-            <span class="info-label">QQ</span>
-            <span class="info-value">123456789</span>
-          </div>
-          <div class="info-table-row">
-            <span class="info-label">微信</span>
-            <span class="info-value">your_wechat</span>
-          </div>
-          <div class="info-table-row">
-            <span class="info-label">邮箱</span>
-            <span class="info-value">you@example.com</span>
-          </div>
-          <div class="info-table-row">
-            <span class="info-label">位置</span>
-            <span class="info-value">国内</span>
-          </div>
-          <div class="info-table-row">
-            <span class="info-label">在线时段</span>
-            <span class="info-value">10:00 - 23:00</span>
-          </div>
-        </div>
-      </div>
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="works">下一页：作品 →</a >
-      </div>
-    </section>
+  <!-- ===== 翻页容器 ===== -->
+  <div class="pages-wrapper">
+    <div class="pages" id="pages">
 
-    <!-- 作品页 -->
-    <section id="works" class="section">
-      <h2 class="section-title">作品展示</h2>
-      <p class="section-desc">部分过往作品，点击可查看大图</p >
-      <div class="works">
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-      </div>
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="pricing">下一页：价格 →</a >
-      </div>
-    </section>
-
-    <!-- 价格页 -->
-    <section id="pricing" class="section">
-      <h2 class="section-title">价格表</h2>
-      <p class="section-desc">以下为参考价格，具体以沟通为准</p >
-      <div class="price-grid">
-        <div class="price-card">
-          <span class="price-tier">基础档</span>
-          <span class="price-amount">¥200</span>
-          <ul class="price-list">
-            <li>半身立绘</li>
-            <li>简单背景</li>
-            <li>1次修改</li>
-            <li>7日内交付</li>
-          </ul>
-        </div>
-        <div class="price-card featured">
-          <span class="price-badge">推荐</span>
-          <span class="price-tier">标准档</span>
-          <span class="price-amount">¥500</span>
-          <ul class="price-list">
-            <li>全身立绘</li>
-            <li>精细背景</li>
-            <li>3次修改</li>
-            <li>10日内交付</li>
-          </ul>
-        </div>
-        <div class="price-card">
-          <span class="price-tier">定制档</span>
-          <span class="price-amount">面议</span>
-          <ul class="price-list">
-            <li>复杂场景</li>
-            <li>多角色</li>
-            <li>不限修改</li>
-            <li>工期另议</li>
-          </ul>
-        </div>
-      </div>
-      <p class="price-note">加急 / 商用 / 额外修改需另行报价</p >
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="notice">下一页：须知 →</a >
-      </div>
-    </section>
-
-    <!-- 须知页 -->
-    <section id="notice" class="section">
-      <h2 class="section-title">约稿须知</h2>
-      <p class="section-desc">下单前请先阅读以下内容</p >
-      <div class="card">
-        <div class="notice-list">
-          <div class="notice-item">
-            <div class="notice-icon">①</div>
-            <div class="notice-content">
-              <h4>先沟通后下单</h4>
-              <p>请先私信说明需求、风格参考和预算，确认档期后再付款。</p >
+      <!-- ==================== 第1页 ==================== -->
+      <section class="page" data-index="0">
+        <div class="page-inner page1-layout">
+          <!-- 暗红→白水墨晕染信息框 -->
+          <div class="ink-card" id="inkCard1">
+            <div class="ink-card-bg" id="inkCardBg1"></div>
+            <div class="ink-card-content">
+              <p class="editable-text" contenteditable="true" data-key="page1_text">
+                在这里写下你想说的话……
+              </p>
+            </div>
+            <!-- 头像放在信息框右下角 -->
+            <div class="avatar-wrap" onclick="uploadAvatar(1)">
+              <img id="avatar1" src="" alt="">
+              <div class="avatar-placeholder" id="avatarPlaceholder1">+</div>
             </div>
           </div>
-          <div class="notice-item">
-            <div class="notice-icon">②</div>
-            <div class="notice-content">
-              <h4>定金制度</h4>
-              <p>确认后需支付50%定金，草稿阶段可全额退款，线稿后不退。</p >
-            </div>
-          </div>
-          <div class="notice-item">
-            <div class="notice-icon">③</div>
-            <div class="notice-content">
-              <h4>修改次数</h4>
-              <p>各档位包含规定修改次数，超出部分按次收费。</p >
-            </div>
-          </div>
-          <div class="notice-item">
-            <div class="notice-icon">④</div>
-            <div class="notice-content">
-              <h4>版权说明</h4>
-              <p>默认仅授予使用权，商用需另议。作品可用于个人展示。</p >
-            </div>
+          <!-- 向下翻页按钮 -->
+          <div class="page-nav bottom-right">
+            <button class="nav-btn" onclick="goTo(1)">
+              <span>了解我 / come to me</span>
+              <span class="arrow">↓</span>
+            </button>
           </div>
         </div>
-      </div>
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="intro">下一页：自介 →</a >
-      </div>
-    </section>
+      </section>
 
-    <!-- 自介页 -->
-    <section id="intro" class="section">
-      <h2 class="section-title">自介话术</h2>
-      <p class="section-desc">复制以下文字即可使用</p >
-      <div class="card">
-        <div class="intro-block">
-          <h4>简短版</h4>
-          <p>接插画 / 立绘 / 头像，风格偏日系厚涂，档期开放中，私信沟通需求～</p >
+      <!-- ==================== 第2页 ==================== -->
+      <section class="page" data-index="1">
+        <div class="page-inner page2-layout">
+          <!-- 上方信息框 -->
+          <div class="info-card glass-card">
+            <h2 class="info-title">INFORMATION</h2>
+            <div class="info-grid">
+              <div class="info-row">
+                <span class="info-label">姓名</span>
+                <span class="editable-text" contenteditable="true" data-key="p2_name">你的名字</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">年龄</span>
+                <span class="editable-text" contenteditable="true" data-key="p2_age">22</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">星座</span>
+                <span class="editable-text" contenteditable="true" data-key="p2_zodiac">天蝎座</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">属性</span>
+                <span class="editable-text" contenteditable="true" data-key="p2_attr">INTJ</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">MBTI</span>
+                <span class="editable-text" contenteditable="true" data-key="p2_mbti">INTJ-A</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第一张图（可替换） -->
+          <div class="image-slot" onclick="uploadImage(2, 'img1')" data-slot="p2_img1">
+            <img id="img_p2_1" src="" alt="">
+            <div class="image-placeholder">点击上传图片 1</div>
+          </div>
+
+          <!-- 文字框 -->
+          <div class="text-box glass-card">
+            <p class="editable-text" contenteditable="true" data-key="p2_text1">
+              人与人的关系就像织毛线，织的时候小心翼翼付出漫长的时间也只是初具雏形……
+            </p>
+          </div>
+
+          <!-- 第二张图（可替换） -->
+          <div class="image-slot" onclick="uploadImage(2, 'img2')" data-slot="p2_img2">
+            <img id="img_p2_2" src="" alt="">
+            <div class="image-placeholder">点击上传图片 2</div>
+          </div>
+
+          <!-- 第二个文字框 -->
+          <div class="text-box glass-card">
+            <p class="editable-text" contenteditable="true" data-key="p2_text2">
+              在这里写下第二段文字……
+            </p>
+          </div>
+
+          <!-- 翻页按钮 -->
+          <div class="page-nav bottom-left">
+            <button class="nav-btn" onclick="goTo(0)">
+              <span class="arrow">←</span>
+              <span>上一页</span>
+            </button>
+          </div>
+          <div class="page-nav bottom-right">
+            <button class="nav-btn" onclick="goTo(2)">
+              <span>go on</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
         </div>
-        <div class="intro-block">
-          <h4>详细版</h4>
-          <p>你好，我是【你的名字】，主要接插画、角色立绘和头像定制。风格偏日系厚涂，也可以根据你的参考调整。支持半身 / 全身 / 场景，具体价格看复杂度，基础档200起。先沟通需求再下单，定金50%，草稿阶段可退。欢迎带参考图私信！</p >
+      </section>
+
+      <!-- ==================== 第3页 ==================== -->
+      <section class="page" data-index="2">
+        <div class="page-inner page3-layout">
+          <div class="p3-content">
+            <!-- 左侧图片堆叠（可替换） -->
+            <div class="p3-images">
+              <div class="image-slot p3-img-back" onclick="uploadImage(3, 'back')" data-slot="p3_back">
+                <img id="img_p3_back" src="" alt="">
+                <div class="image-placeholder">背景图</div>
+              </div>
+              <div class="image-slot p3-img-front" onclick="uploadImage(3, 'front')" data-slot="p3_front">
+                <img id="img_p3_front" src="" alt="">
+                <div class="image-placeholder">前景图</div>
+              </div>
+            </div>
+            <!-- 右侧暗红→白水墨晕染装饰 -->
+            <div class="p3-ink-deco"></div>
+          </div>
+          <!-- 图片下方可编辑文字框 -->
+          <div class="text-box glass-card p3-text">
+            <p class="editable-text" contenteditable="true" data-key="p3_text">
+              Tears, the smallest sea.
+            </p>
+          </div>
+          <div class="p3-commission">
+            <span class="editable-text" contenteditable="true" data-key="p3_commission">COMMISSION</span>
+          </div>
+
+          <div class="page-nav bottom-left">
+            <button class="nav-btn" onclick="goTo(1)">
+              <span class="arrow">←</span><span>上一页</span>
+            </button>
+          </div>
+          <div class="page-nav bottom-right">
+            <button class="nav-btn" onclick="goTo(3)">
+              <span>come here</span><span class="arrow">→</span>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="reviews">下一页：板评 →</a >
-      </div>
-    </section>
+      </section>
 
-    <!-- 板评页 -->
-    <section id="reviews" class="section">
-      <h2 class="section-title">板评链接</h2>
-      <p class="section-desc">过往评价与反馈</p >
-      <div class="card">
-        <div class="review-links">
-          <a class="review-link" href="#" target="_blank">半次元评价</a >
-          <a class="review-link" href="#" target="_blank">米画师评价</a >
-          <a class="review-link" href="#" target="_blank">QQ空间反馈</a >
-          <a class="review-link" href="#" target="_blank">微博返图</a >
+      <!-- ==================== 第4页 ==================== -->
+      <section class="page" data-index="3">
+        <div class="page-inner page4-layout">
+          <div class="p4-left ink-card">
+            <div class="ink-card-bg" id="inkCardBg4"></div>
+            <div class="ink-card-content">
+              <p class="editable-text" contenteditable="true" data-key="p4_left">
+                Some day I wanna lay down<br>
+                Like god did on sunday
+              </p>
+            </div>
+          </div>
+          <div class="p4-right">
+            <div class="image-slot" onclick="uploadImage(4, 'main')" data-slot="p4_main">
+              <img id="img_p4_main" src="" alt="">
+              <div class="image-placeholder">点击上传图片</div>
+            </div>
+            <div class="text-box glass-card p4-text-box">
+              <p class="editable-text" contenteditable="true" data-key="p4_right">
+                Things fall apart<br>And time breaks your heart
+              </p>
+            </div>
+          </div>
+
+          <div class="page-nav bottom-left">
+            <button class="nav-btn" onclick="goTo(2)">
+              <span class="arrow">←</span><span>上一页</span>
+            </button>
+          </div>
+          <div class="page-nav bottom-right">
+            <button class="nav-btn" onclick="goTo(4)">
+              <span>and then</span><span class="arrow">→</span>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="page-nav-bottom">
-        <a class="btn-primary" data-target="welcome">回到首页 ↑</a >
-      </div>
-    </section>
+      </section>
 
-  </main>
+      <!-- ==================== 第5页 ==================== -->
+      <section class="page" data-index="4">
+        <div class="page-inner page5-layout">
+          <div class="p5-grid">
+            <div class="image-slot" onclick="uploadImage(5, 'a')" data-slot="p5_a">
+              <img id="img_p5_a" src="" alt="">
+              <div class="image-placeholder">图片 A</div>
+            </div>
+            <div class="image-slot" onclick="uploadImage(5, 'b')" data-slot="p5_b">
+              <img id="img_p5_b" src="" alt="">
+              <div class="image-placeholder">图片 B</div>
+            </div>
+            <div class="image-slot" onclick="uploadImage(5, 'c')" data-slot="p5_c">
+              <img id="img_p5_c" src="" alt="">
+              <div class="image-placeholder">图片 C</div>
+            </div>
+            <div class="image-slot" onclick="uploadImage(5, 'd')" data-slot="p5_d">
+              <img id="img_p5_d" src="" alt="">
+              <div class="image-placeholder">图片 D</div>
+            </div>
+          </div>
+          <div class="p5-text">
+            <p class="editable-text" contenteditable="true" data-key="p5_text">
+              爱与音乐，也是有一生要过的。
+            </p>
+          </div>
 
-  <footer class="footer">
-    © 2026 你的名字 · 保留所有权利
-  </footer>
+          <div class="page-nav bottom-left">
+            <button class="nav-btn" onclick="goTo(3)">
+              <span class="arrow">←</span><span>上一页</span>
+            </button>
+          </div>
+          <div class="page-nav bottom-right">
+            <button class="nav-btn" onclick="goTo(5)">
+              <span>the last</span><span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
-  <script>
-    // 顶部导航切换
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const target = item.dataset.target;
-        if (!target) return;
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        item.classList.add('active');
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
-        document.getElementById(target).classList.add('active-section');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
+      <!-- ==================== 第6页 ==================== -->
+      <section class="page" data-index="5">
+        <div class="page-inner page6-layout">
+          <!-- 左侧文字区，暗红→白渐变 -->
+          <div class="p6-left">
+            <p class="editable-text ink-text" contenteditable="true" data-key="p6_line1">
+              Some day some day
+            </p>
+            <p class="editable-text ink-text" contenteditable="true" data-key="p6_line2">
+              Some day I'll
+            </p>
+          </div>
 
-    // 底部按钮翻页
-    document.querySelectorAll('.btn-primary[data-target]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = btn.dataset.target;
-        document.querySelectorAll('.nav-item').forEach(n => {
-          n.classList.toggle('active', n.dataset.target === target);
-        });
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
-        document.getElementById(target).classList.add('active-section');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-  </script>
+          <!-- 右侧四个链接，每个链接上方有可编辑文字框 -->
+          <div class="p6-right">
+            <div class="link-block">
+              <input class="link-label-input" type="text" placeholder="链接标题" data-link-label="1" value="链接一">
+              <a class="link-card" href="#" target="_blank" data-link="1">点击访问 →</a>
+            </div>
+            <div class="link-block">
+              <input class="link-label-input" type="text" placeholder="链接标题" data-link-label="2" value="链接二">
+              <a class="link-card" href="#" target="_blank" data-link="2">点击访问 →</a>
+            </div>
+            <div class="link-block">
+              <input class="link-label-input" type="text" placeholder="链接标题" data-link-label="3" value="链接三">
+              <a class="link-card" href="#" target="_blank" data-link="3">点击访问 →</a>
+            </div>
+            <div class="link-block">
+              <input class="link-label-input" type="text" placeholder="链接标题" data-link-label="4" value="链接四">
+              <a class="link-card" href="#" target="_blank" data-link="4">点击访问 →</a>
+            </div>
+          </div>
 
+          <div class="page-nav bottom-left">
+            <button class="nav-btn" onclick="goTo(4)">
+              <span class="arrow">←</span><span>上一页</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /pages -->
+  </div><!-- /pages-wrapper -->
+
+  <!-- 隐藏的 input -->
+  <input type="file" id="avatarUploader" accept="image/*" hidden>
+  <input type="file" id="imageUploader" accept="image/*" hidden>
+
+  <script src="script.js"></script>
 </body>
 </html>
