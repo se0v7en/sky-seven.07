@@ -169,47 +169,31 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.25s, opacity 0.3s;
   white-space: nowrap;
-}
-
-/* 上一页：白色 */
-.nav-btn.prev {
   background: #FFFFFF;
   color: #000;
   border: none;
+  transition: transform 0.2s, box-shadow 0.25s, opacity 0.3s;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.10),
     0 4px 12px rgba(0, 0, 0, 0.10);
 }
-.nav-btn.prev:hover {
+
+.nav-btn:hover {
+  transform: translateY(-2px);
   box-shadow:
     0 2px 5px rgba(0, 0, 0, 0.12),
     0 8px 20px rgba(0, 0, 0, 0.16);
-  transform: translateY(-2px);
 }
 
-/* 下一页：从上至下 暗红 → 白 */
-.nav-btn.next {
-  background: linear-gradient(to bottom,
-              #5C0A1A 0%,
-              #8B1A2B 35%,
-              #C4949E 70%,
-              #FFFFFF 100%);
-  color: #000;
-  border: none;
+.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 4px 14px rgba(0, 0, 0, 0.18);
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
-.nav-btn.next:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    0 8px 22px rgba(0, 0, 0, 0.25);
-}
-
-.nav-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; }
 
 /* ============================================
    第一页
@@ -881,4 +865,4 @@ img[src]:not([src=""]) + .img-ph { display: none; }
 
   .nav-btn { min-width: 110px; padding: 10px 18px; font-size: 12px; }
   .bottom-nav { gap: 12px; }
-}
+   }
