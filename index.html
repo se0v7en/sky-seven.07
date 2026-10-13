@@ -3,224 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>我的主页</title>
+<title>作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- 固定 800×600 的画布 -->
-<div class="viewport" id="viewport">
-  <div class="pages" id="pages">
+<!-- ===== 顶部栏：左名称 / 右页名 ===== -->
+<header class="top-bar">
+  <div class="top-left">我的作品集</div>
+  <div class="top-right" id="pageName">封面</div>
+</header>
 
-    <!-- ============ 第1页 · 图一 ============ -->
-    <section class="slide active" data-index="0">
-      <div class="abs topbar-left">SAMPLE/<br>2026</div>
-      <div class="abs topbar-dots">● ● ●</div>
-      <div class="abs topbar-right">/PREVIEW<br>设计预览</div>
-
-      <div class="abs main-card ink-card">
-        <div class="ink-layer"></div>
-        <p class="abs card-text editable" contenteditable="true" data-key="p1_text">
-          在这里写下你想说的话……
-        </p>
-        <div class="abs avatar avatar-br" onclick="uploadAvatar(1)">
-          <img id="avatar1" src="" alt="">
-          <div class="avatar-ph">+</div>
-        </div>
-      </div>
-
-      <div class="abs footer-line"></div>
-      <div class="abs footer-title">PRIVATE COMMISSION</div>
-      <div class="abs footer-sub">UNAUTHORIZED USE, COPYING, OR REDISTRIBUTION IS STRICTLY PROHIBITED</div>
-
-      <button class="abs nav-btn nav-br" onclick="goTo(1)">了解我 / come to me ↓</button>
-    </section>
-
-    <!-- ============ 第2页 · 图三 ============ -->
-    <section class="slide" data-index="1">
-      <div class="abs p2-title">INFORMATION</div>
-      <div class="abs p2-intro editable" contenteditable="true" data-key="p2_intro">
-        人与人的关系就像织毛线<br>
-        织的时候小心翼翼付出漫长的时间也只是初具雏形<br>
-        而拆掉的时候只需要松手轻轻一拉一切都会回到原点
-      </div>
-
-      <div class="abs avatar p2-avatar" onclick="uploadAvatar(2)">
-        <img id="avatar2" src="" alt="">
-        <div class="avatar-ph">+</div>
-      </div>
-      <div class="abs p2-name editable" contenteditable="true" data-key="p2_name">@衔尾蛇</div>
-
-      <div class="abs p2-infobox">
-        <div class="info-line"><span>姓名</span><i class="editable" contenteditable="true" data-key="p2_i_name">Siti Anisa</i></div>
-        <div class="info-line"><span>年龄</span><i class="editable" contenteditable="true" data-key="p2_i_age">21 Years old</i></div>
-        <div class="info-line"><span>星座</span><i class="editable" contenteditable="true" data-key="p2_i_zodiac">Scorpio</i></div>
-        <div class="info-line"><span>属性</span><i class="editable" contenteditable="true" data-key="p2_i_attr">Female</i></div>
-        <div class="info-line"><span>MBTI</span><i class="editable" contenteditable="true" data-key="p2_i_mbti">INTJ-A</i></div>
-      </div>
-
-      <div class="abs img-slot p2-img1" onclick="uploadImage(2,'big')" data-slot="p2_big">
-        <img id="img_p2_big" src="" alt="">
-        <div class="img-ph">点击上传图片</div>
-      </div>
-
-      <div class="abs p2-textbox editable" contenteditable="true" data-key="p2_t1">
-        Mrs. Siti Anisa · 21 Years old · Female · Jakarta · Account owner
-      </div>
-
-      <div class="abs img-slot p2-img2" onclick="uploadImage(2,'side')" data-slot="p2_side">
-        <img id="img_p2_side" src="" alt="">
-        <div class="img-ph">点击上传图片</div>
-      </div>
-
-      <button class="abs nav-btn nav-bl" onclick="goTo(0)">← 上一页</button>
-      <button class="abs nav-btn nav-br" onclick="goTo(2)">go on →</button>
-    </section>
-
-    <!-- ============ 第3页 · 图四 ============ -->
-    <section class="slide" data-index="2">
-      <div class="abs img-slot p3-img-back" onclick="uploadImage(3,'back')" data-slot="p3_back">
-        <img id="img_p3_back" src="" alt=""><div class="img-ph">背景图</div>
-      </div>
-      <div class="abs img-slot p3-img-front" onclick="uploadImage(3,'front')" data-slot="p3_front">
-        <img id="img_p3_front" src="" alt=""><div class="img-ph">前景图</div>
-      </div>
-
-      <div class="abs p3-totem"></div>
-
-      <div class="abs p3-caption editable" contenteditable="true" data-key="p3_cap">
-        Tears, the smallest sea.
-      </div>
-      <div class="abs p3-commission editable" contenteditable="true" data-key="p3_comm">
-        COMMISSION
-      </div>
-
-      <button class="abs nav-btn nav-bl" onclick="goTo(1)">← 上一页</button>
-      <button class="abs nav-btn nav-br" onclick="goTo(3)">come here →</button>
-    </section>
-
-    <!-- ============ 第4页 · 图五 ============ -->
-    <section class="slide" data-index="3">
-      <div class="abs p4-block ink-card">
-        <div class="ink-layer"></div>
-        <p class="abs p4-block-text editable" contenteditable="true" data-key="p4_main">
-          Some day I wanna lay down<br>Like god did on sunday
-        </p>
-        <div class="abs img-slot p4-mini1" onclick="uploadImage(4,'mini1')" data-slot="p4_mini1">
-          <img id="img_p4_mini1" src="" alt=""><div class="img-ph">小图</div>
-        </div>
-        <div class="abs img-slot p4-mini2" onclick="uploadImage(4,'mini2')" data-slot="p4_mini2">
-          <img id="img_p4_mini2" src="" alt=""><div class="img-ph">小图</div>
-        </div>
-        <div class="abs img-slot p4-mini3" onclick="uploadImage(4,'mini3')" data-slot="p4_mini3">
-          <img id="img_p4_mini3" src="" alt=""><div class="img-ph">碎图</div>
-        </div>
-      </div>
-
-      <div class="abs img-slot p4-tall" onclick="uploadImage(4,'tall')" data-slot="p4_tall">
-        <img id="img_p4_tall" src="" alt=""><div class="img-ph">竖图</div>
-      </div>
-
-      <div class="abs p4-cap1 editable" contenteditable="true" data-key="p4_cap1">
-        Things fall apart<br>And time breaks your heart
-      </div>
-      <div class="abs p4-cap2 editable" contenteditable="true" data-key="p4_cap2">
-        Years ahead but way behind<br>I'm on one two three four five
-      </div>
-      <div class="abs img-slot p4-side" onclick="uploadImage(4,'side')" data-slot="p4_side">
-        <img id="img_p4_side" src="" alt=""><div class="img-ph">小图</div>
-      </div>
-
-      <button class="abs nav-btn nav-bl" onclick="goTo(2)">← 上一页</button>
-      <button class="abs nav-btn nav-br" onclick="goTo(4)">and then →</button>
-    </section>
-
-    <!-- ============ 第5页 · 图六（黑底） ============ -->
-    <section class="slide slide-dark" data-index="4">
-      <div class="abs img-slot p5-img1" onclick="uploadImage(5,'i1')" data-slot="p5_i1">
-        <img id="img_p5_i1" src="" alt=""><div class="img-ph">花</div>
-      </div>
-      <div class="abs img-slot p5-img2" onclick="uploadImage(5,'i2')" data-slot="p5_i2">
-        <img id="img_p5_i2" src="" alt=""><div class="img-ph">花</div>
-      </div>
-      <div class="abs img-slot p5-img3" onclick="uploadImage(5,'i3')" data-slot="p5_i3">
-        <img id="img_p5_i3" src="" alt=""><div class="img-ph">花</div>
-      </div>
-      <div class="abs img-slot p5-img4" onclick="uploadImage(5,'i4')" data-slot="p5_i4">
-        <img id="img_p5_i4" src="" alt=""><div class="img-ph">花</div>
-      </div>
-
-      <div class="abs p5-title editable" contenteditable="true" data-key="p5_title">/ 爱与-音乐 /</div>
-      <div class="abs p5-sub editable" contenteditable="true" data-key="p5_sub">（也是有一生要过的。）</div>
-
-      <div class="abs p5-cap1 editable" contenteditable="true" data-key="p5_cap1">Between / me and him、</div>
-      <div class="abs p5-cap2 editable" contenteditable="true" data-key="p5_cap2">" 应当属于所有人 "</div>
-
-      <div class="abs p5-lyric editable" contenteditable="true" data-key="p5_lyric">
-        And you might get burned if you take too much<br>
-        但你已经愈合 也许会被灼伤<br>
-        Don't get addicted 'cause<br>
-        <b>I'm gonna fade you like that rush</b><br>
-        因为我会顷刻间将你焚化
-      </div>
-
-      <div class="abs p5-author editable" contenteditable="true" data-key="p5_author">/ 陆早秋 &amp; 钟关白 /</div>
-
-      <button class="abs nav-btn nav-bl" onclick="goTo(3)">← 上一页</button>
-      <button class="abs nav-btn nav-br" onclick="goTo(5)">the last →</button>
-    </section>
-
-    <!-- ============ 第6页 · 白底版 ============ -->
-    <section class="slide" data-index="5">
-      <div class="abs img-slot p6-img1" onclick="uploadImage(6,'i1')" data-slot="p6_i1">
-        <img id="img_p6_i1" src="" alt=""><div class="img-ph">图1</div>
-      </div>
-      <div class="abs img-slot p6-img2" onclick="uploadImage(6,'i2')" data-slot="p6_i2">
-        <img id="img_p6_i2" src="" alt=""><div class="img-ph">图2</div>
-      </div>
-      <div class="abs img-slot p6-img3" onclick="uploadImage(6,'i3')" data-slot="p6_i3">
-        <img id="img_p6_i3" src="" alt=""><div class="img-ph">图3</div>
-      </div>
-
-      <div class="abs p6-bigtext editable" contenteditable="true" data-key="p6_big">
-        Some day some day<br>Some day I'll
-      </div>
-
-      <div class="abs p6-links">
-        <div class="link-block">
-          <input class="link-label" type="text" placeholder="链接标题" data-link-label="1" value="链接一">
-          <a class="link-card" href="#" target="_blank" data-link="1">点击访问 →</a>
-        </div>
-        <div class="link-block">
-          <input class="link-label" type="text" placeholder="链接标题" data-link-label="2" value="链接二">
-          <a class="link-card" href="#" target="_blank" data-link="2">点击访问 →</a>
-        </div>
-        <div class="link-block">
-          <input class="link-label" type="text" placeholder="链接标题" data-link-label="3" value="链接三">
-          <a class="link-card" href="#" target="_blank" data-link="3">点击访问 →</a>
-        </div>
-        <div class="link-block">
-          <input class="link-label" type="text" placeholder="链接标题" data-link-label="4" value="链接四">
-          <a class="link-card" href="#" target="_blank" data-link="4">点击访问 →</a>
-        </div>
-      </div>
-
-      <button class="abs nav-btn nav-bl" onclick="goTo(4)">← 上一页</button>
-    </section>
-
-  </div><!-- /pages -->
-
-  <!-- 音乐控制（画布内，随画布缩放） -->
-  <div class="music-control">
-    <span class="music-note">♪</span>
-    <button class="music-btn" id="musicBtn">▶</button>
-  </div>
+<!-- ===== 音乐控制（独立浮动） ===== -->
+<div class="music-control">
+  <span class="music-note">♪</span>
+  <button class="music-btn" id="musicBtn" title="播放 / 暂停">▶</button>
 </div>
 
-<audio id="bgm" loop><source src="bgm.mp3" type="audio/mpeg"></audio>
+<!-- ===== 幻灯片容器 ===== -->
+<main class="deck" id="deck">
 
-<input type="file" id="avatarUploader" accept="image/*" hidden>
-<input type="file" id="imageUploader" accept="image/*" hidden>
+  <!-- ============ 第一页 · 封面 ============ -->
+  <section class="slide active" data-index="0" data-name="封面">
+    <div class="slide-inner">
+
+      <!-- 图例 1：大图 + 名字 + 方形头像 + 副标题 -->
+      <div class="p1-hero">
+        <div class="p1-photo">
+          <img src="" alt="">
+          <div class="img-ph">在代码中给 img 加 src 即可显示</div>
+        </div>
+        <div class="p1-info">
+          <div class="p1-name">青梅绿茶</div>
+          <div class="p1-avatar">
+            <img src="" alt="">
+            <div class="img-ph">头像</div>
+          </div>
+          <div class="p1-sub">INFP｜情緒；无尽夏</div>
+        </div>
+      </div>
+
+      <!-- 四个可编辑小框（一排） -->
+      <div class="p1-mini-grid">
+        <div class="p1-mini">小框一</div>
+        <div class="p1-mini">小框二</div>
+        <div class="p1-mini">小框三</div>
+        <div class="p1-mini">小框四</div>
+      </div>
+
+      <!-- 一句可编辑的话 -->
+      <p class="p1-line">在这里写下你想说的一句话……</p>
+
+    </div>
+  </section>
+
+  <!-- ============ 第二页 · 个人信息 ============ -->
+  <section class="slide" data-index="1" data-name="个人信息">
+    <div class="slide-inner">
+
+      <!-- 图例 2：深色卡片 + 右侧图片面板 -->
+      <div class="p2-hero">
+
+        <!-- 左侧深色卡片 -->
+        <div class="p2-card">
+          <div class="p2-head">
+            <div class="p2-avatar">
+              <img src="" alt="">
+              <div class="img-ph">头像</div>
+            </div>
+            <div class="p2-head-info">
+              <div class="p2-user">
+                <span class="p2-username">@碎冰蓝</span>
+                <span class="p2-share">Share</span>
+              </div>
+              <div class="p2-tag">ISFP / 慢热</div>
+              <div class="p2-sign">我想我们应该从今天开始。</div>
+            </div>
+          </div>
+
+          <div class="p2-stats">1,686 Followers · 185 Following</div>
+
+          <div class="p2-followed">
+            <span class="p2-dot"></span>
+            <span class="p2-dot"></span>
+            <span class="p2-followed-text">Followed by Artist, Musician and 34 others</span>
+          </div>
+
+          <div class="p2-about">About Me</div>
+
+          <p class="p2-p">
+            爱之于我，<br>
+            不是肌肤之亲，不是一蔬一饭，它是一种不死的欲望<br>
+            是疲惫生活中的英雄梦想
+          </p>
+
+          <p class="p2-p">
+            人与人之间的缘分，有时候薄得像一张纸。<br>
+            所谓宿命，大概就是你无论如何挣扎，最后都会殊途同归。
+          </p>
+
+          <p class="p2-p">
+            주고,내가 좋아라면<br>
+            나에게 향기를 주었지만 나 사랑이기에 나에게 사랑을 줬게.
+          </p>
+
+          <div class="p2-mail-row">
+            <span class="p2-mail-btn">MAIL</span>
+            <span class="p2-mail-text">We are all broken, that's how the light gets in.</span>
+          </div>
+        </div>
+
+        <!-- 右侧图片面板 -->
+        <div class="p2-right">
+          <div class="p2-date-nav">
+            <span class="p2-arrow">‹</span>
+            <span class="p2-date" id="dynamicDate">Aug 2020</span>
+            <span class="p2-arrow">›</span>
+          </div>
+
+          <div class="p2-photo">
+            <img src="" alt="">
+            <div class="img-ph">图片</div>
+          </div>
+
+          <div class="p2-msg-bubble">Latest Reply to me...</div>
+
+          <div class="p2-bottom-row">
+            <div class="p2-avatar-sm">
+              <img src="" alt="">
+              <div class="img-ph">+</div>
+            </div>
+            <div class="p2-msg-bubble-sm">너희 쪽도 그래너희 쪽도?</div>
+          </div>
+
+          <div class="p2-photo-sm">
+            <img src="" alt="">
+            <div class="img-ph">图片</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 可插入的链接 -->
+      <div class="link-row">
+        <div class="link-title">个人主页</div>
+        <a class="link-card" href="https://example.com" target="_blank">点击访问 →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 第三页 · 风格概述 ============ -->
+  <section class="slide" data-index="2" data-name="风格概述">
+    <div class="slide-inner">
+
+      <!-- 图例 3：白底线条风 -->
+      <div class="p3-hero">
+        <!-- 装饰曲线 -->
+        <svg class="p3-svg" viewBox="0 0 400 320" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M30,60 C90,20 150,90 210,60 C270,30 320,80 360,40
+                   C380,20 390,80 340,110 C280,150 200,110 140,150
+                   C80,190 40,150 70,200 C100,250 180,220 220,260
+                   C260,300 300,280 340,260"
+                fill="none" stroke="#c9c9c9" stroke-width="1.2"/>
+        </svg>
+
+        <div class="p3-top-note">Search for oxygen<br>Breathe</div>
+
+        <div class="p3-center">
+          <div class="p3-up">(up)</div>
+          <div class="p3-small">If you feel yourself 'drowning in<br>the bottom of the sea'.</div>
+          <div class="p3-hash">#Mother love</div>
+
+          <div class="p3-photo">
+            <img src="" alt="">
+            <div class="img-ph">图片</div>
+          </div>
+
+          <div class="p3-caption">&lt; 上辈子你也失去了妈妈 &gt;</div>
+        </div>
+
+        <div class="p3-right">
+          <div class="p3-right-arrow">——</div>
+          <div class="p3-right-char">颗</div>
+          <div class="p3-right-char">苹</div>
+          <div class="p3-right-char">果</div>
+        </div>
+
+        <div class="p3-lower-left">
+          <div class="p3-l1">beginning ——</div>
+          <div class="p3-l2">It's not as good as the</div>
+        </div>
+
+        <div class="p3-swimming">Swimming</div>
+      </div>
+
+      <!-- 三个文字框（左右左） -->
+      <div class="p3-boxes">
+        <div class="p3-box p3-box-left">
+          <div class="p3-box-title">标题一</div>
+          <div class="p3-box-line">第二行文字内容</div>
+          <div class="p3-box-line">第三行文字内容</div>
+        </div>
+
+        <div class="p3-box p3-box-right">
+          <div class="p3-box-title">标题二</div>
+          <div class="p3-box-line">第二行文字内容</div>
+          <div class="p3-box-line">第三行文字内容</div>
+        </div>
+
+        <div class="p3-box p3-box-left">
+          <div class="p3-box-title">标题三</div>
+          <div class="p3-box-line">第二行文字内容</div>
+          <div class="p3-box-line">第三行文字内容</div>
+        </div>
+      </div>
+
+      <!-- 两个链接 -->
+      <div class="p3-links">
+        <div class="link-block">
+          <div class="link-title">链接一标题</div>
+          <a class="link-card" href="https://example.com" target="_blank">点击访问 →</a>
+        </div>
+        <div class="link-block">
+          <div class="link-title">链接二标题</div>
+          <a class="link-card" href="https://example.com" target="_blank">点击访问 →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 第四页 · 结尾 ============ -->
+  <section class="slide" data-index="3" data-name="结尾">
+    <div class="slide-inner">
+
+      <!-- 图例 4：黑白拼贴 -->
+      <div class="p4-hero">
+
+        <!-- 左侧黑块 -->
+        <div class="p4-left-block">
+          <div class="p4-lt1">Some day I wanna lay down<br>Like god did on sunday</div>
+          <div class="p4-lt2">Some day some day<br>Some day I'll</div>
+          <div class="p4-lt3">Years ahead but way behind<br>I'm on one two three four five</div>
+
+          <div class="p4-mini p4-mini-1"><img src="" alt=""></div>
+          <div class="p4-mini p4-mini-2"><img src="" alt=""></div>
+          <div class="p4-mini p4-mini-3"><img src="" alt=""></div>
+        </div>
+
+        <!-- 右侧 -->
+        <div class="p4-right">
+          <div class="p4-rt-top">Things fall apart<br>And time breaks your heart</div>
+
+          <div class="p4-main-photo">
+            <img src="" alt="">
+            <div class="img-ph">图片</div>
+          </div>
+
+          <div class="p4-side-photo">
+            <img src="" alt="">
+            <div class="img-ph">图片</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 可插入的链接 -->
+      <div class="link-row">
+        <div class="link-title">联系我</div>
+        <a class="link-card" href="https://example.com" target="_blank">点击访问 →</a>
+      </div>
+
+      <!-- 花体文字框 -->
+      <div class="p4-script-box">
+        <div class="p4-script-line">Thank you for watching</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 底部翻页按钮 ===== -->
+<nav class="bottom-nav">
+  <button class="nav-btn prev" id="prevBtn">上一页</button>
+  <button class="nav-btn next" id="nextBtn">下一页</button>
+</nav>
+
+<!-- ===== 背景音乐（把 src 换成你自己的音乐地址） ===== -->
+<audio id="bgm" loop>
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 </body>
