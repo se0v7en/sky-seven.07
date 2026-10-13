@@ -7,16 +7,6 @@
   --red-soft: #C41E3A;
   --white:    #FFFFFF;
   --black:    #000000;
-  --text:     #000000;
-  --text-gray: #000000;
-  --text-light: #000000;
-  /* 按钮式阴影 */
-  --shadow-soft:
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-hover:
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    0 8px 20px rgba(0, 0, 0, 0.12);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -634,7 +624,7 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   letter-spacing: 2px;
 }
 
-/* 三个文字框（左右左）· 无边框 · 只有阴影 */
+/* 三个文字框（左右左）· 无边框无阴影 */
 .p3-boxes {
   display: flex;
   flex-direction: column;
@@ -645,19 +635,15 @@ img[src]:not([src=""]) + .img-ph { display: none; }
 .p3-box {
   max-width: 72%;
   padding: 18px 22px;
-  border-radius: 12px;
-  background: #fff;
-  border: none;                 /* ★ 去掉边框 */
-  transition: box-shadow 0.25s, transform 0.2s;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.05),
-    0 4px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: none;
 }
 .p3-box:hover {
-  box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.07),
-    0 8px 22px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: none;
 }
 
 .p3-box-left  { align-self: flex-start; }
@@ -805,7 +791,7 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   font-family: "Great Vibes", "Cormorant Garamond", cursive;
   font-size: 42px;
   line-height: 1.4;
-  color: #000;                 /* ★ 花体文字也改为黑色 */
+  color: #000;
   letter-spacing: 2px;
 }
 
