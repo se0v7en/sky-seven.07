@@ -1,153 +1,72 @@
 /* ============================================
-   六页翻页 · 自动缩放画布 · 内容编辑 · 音乐
+   四页翻页 · 动态时间 · 音乐
+   （所有文字/图片都只能在 HTML 中修改）
    ============================================ */
 (function () {
-  const DESIGN_W = 800;
-  const DESIGN_H = 600;
+  'use strict';
 
-  const viewport = document.getElementById('viewport');
   const slides   = document.querySelectorAll('.slide');
-  let cur = 0;
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const pageName = document.getElementById('pageName');
+  const bgm      = document.getElementById('bgm');
+  const musicBtn = document.getElementById('musicBtn');
 
-  /* ============================================
-     ★ 核心：把 800×600 画布等比缩放进屏幕
-     - 保持 4:3，短边贴边，长边留白
-     - 四周留 16px 呼吸空间
-     ============================================ */
-  function fitViewport() {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const padding = 16;                                   // 四周留白
-    const scale = Math.min(
-      (vw - padding * 2) / DESIGN_W,
-      (vh - padding * 2) / DESIGN_H
-    );
-    viewport.style.transform = `scale(${scale})`;
+  let current = 0;
+  const total = slides.length;
+
+  /* ---------- 翻页 ---------- */
+  function goTo(index) {
+    if (index < 0 || index >= total) return;
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    current = index;
+
+    // 更新顶部右侧页名
+    pageName.textContent = slides[index].dataset.name || '';
+
+    // 更新按钮禁用状态
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+
+    // 切换后滚动到顶部
+    slides[index].scrollTop = 0;
   }
 
-  window.addEventListener('resize', fitViewport);
-  window.addEventListener('orientationchange', fitViewport);
-  fitViewport();
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
 
-  /* ============================================
-     翻页
-     ============================================ */
-  window.goTo = function (i) {
-    if (i < 0 || i >= slides.length) return;
-    slides.forEach((s, k) => s.classList.toggle('active', k === i));
-    cur = i;
-  };
-
+  /* ---------- 键盘方向键 ---------- */
   document.addEventListener('keydown', e => {
-    if (document.activeElement && document.activeElement.isContentEditable) return;
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(cur + 1); }
-    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(cur - 1); }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
   });
 
-  // 触屏滑动
-  let tX = 0;
-  document.addEventListener('touchstart', e => tX = e.touches[0].clientX, { passive: true });
-  document.addEventListener('touchend', e => {
-    const d = e.changedTouches[0].clientX - tX;
-    if (Math.abs(d) > 60) goTo(cur + (d < 0 ? 1 : -1));
-  }, { passive: true });
+  /* ---------- 动态时间（Aug 2020 自动变化） ---------- */
+  function updateDate() {
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const now = new Date();
+    const el = document.getElementById('dynamicDate');
+    if (el) el.textContent = `${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
+  }
+  updateDate();
 
-  /* ============================================
-     文字自动保存 / 恢复
-     ============================================ */
-  document.addEventListener('input', e => {
-    const el = e.target.closest('[data-key]');
-    if (el) localStorage.setItem('edit_' + el.dataset.key, el.textContent);
-    if (e.target.classList.contains('link-label')) {
-      localStorage.setItem('linkLabel' + e.target.dataset.linkLabel, e.target.value);
+  /* ---------- 音乐播放 / 暂停 ---------- */
+  musicBtn.addEventListener('click', () => {
+    if (bgm.paused) {
+      bgm.play().then(() => {
+        musicBtn.textContent = '❚❚';
+      }).catch(() => {
+        // 浏览器阻止自动播放时，不做处理
+      });
+    } else {
+      bgm.pause();
+      musicBtn.textContent = '▶';
     }
   });
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const v = localStorage.getItem('edit_' + el.dataset.key);
-    if (v !== null) el.textContent = v;
-  });
-  document.querySelectorAll('.link-label').forEach(inp => {
-    const v = localStorage.getItem('linkLabel' + inp.dataset.linkLabel);
-    if (v !== null) inp.value = v;
-  });
+  bgm.addEventListener('play',  () => { musicBtn.textContent = '❚❚'; });
+  bgm.addEventListener('pause', () => { musicBtn.textContent = '▶'; });
 
-  /* ============================================
-     头像上传
-     ============================================ */
-  const avUp = document.getElementById('avatarUploader');
-  let curAv = null;
-  window.uploadAvatar = n => { curAv = 'avatar' + n; avUp.click(); };
-  avUp.addEventListener('change', function () {
-    const f = this.files[0]; if (!f || !curAv) return;
-    const r = new FileReader();
-    r.onload = e => {
-      const img = document.getElementById(curAv);
-      if (img) { img.src = e.target.result; img.classList.add('visible'); }
-      localStorage.setItem('img_' + curAv, e.target.result);
-    };
-    r.readAsDataURL(f); this.value = '';
-  });
-
-  /* ============================================
-     图片上传
-     ============================================ */
-  const imUp = document.getElementById('imageUploader');
-  let curIm = null;
-  window.uploadImage = (p, s) => { curIm = 'img_p' + p + '_' + s; imUp.click(); };
-  imUp.addEventListener('change', function () {
-    const f = this.files[0]; if (!f || !curIm) return;
-    const r = new FileReader();
-    r.onload = e => {
-      const img = document.getElementById(curIm);
-      if (img) { img.src = e.target.result; img.classList.add('visible'); }
-      localStorage.setItem('img_' + curIm, e.target.result);
-    };
-    r.readAsDataURL(f); this.value = '';
-  });
-
-  // 恢复所有图片 / 头像
-  ['avatar1','avatar2',
-   'img_p2_big','img_p2_side',
-   'img_p3_back','img_p3_front',
-   'img_p4_mini1','img_p4_mini2','img_p4_mini3','img_p4_tall','img_p4_side',
-   'img_p5_i1','img_p5_i2','img_p5_i3','img_p5_i4',
-   'img_p6_i1','img_p6_i2','img_p6_i3'
-  ].forEach(id => {
-    const v = localStorage.getItem('img_' + id);
-    if (!v) return;
-    const img = document.getElementById(id);
-    if (img) { img.src = v; img.classList.add('visible'); }
-  });
-
-  /* ============================================
-     链接地址（右键/长按编辑）
-     ============================================ */
-  document.querySelectorAll('.link-card').forEach(c => {
-    c.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      const n = c.dataset.link;
-      const curUrl = (c.href === '#' || c.href.endsWith('#')) ? '' : c.href;
-      const url = prompt('输入链接地址（完整 URL）：', curUrl);
-      if (url !== null) {
-        c.href = url || '#';
-        localStorage.setItem('linkUrl' + n, url || '#');
-      }
-    });
-    const saved = localStorage.getItem('linkUrl' + c.dataset.link);
-    if (saved) c.href = saved;
-  });
-
-  /* ============================================
-     音乐
-     ============================================ */
-  const bgm = document.getElementById('bgm');
-  const mBtn = document.getElementById('musicBtn');
-  mBtn.addEventListener('click', () => {
-    if (bgm.paused) { bgm.play().catch(()=>{}); mBtn.textContent = '❚❚'; }
-    else { bgm.pause(); mBtn.textContent = '▶'; }
-  });
-  bgm.addEventListener('play', () => mBtn.textContent = '❚❚');
-  bgm.addEventListener('pause', () => mBtn.textContent = '▶');
-
+  /* ---------- 初始化 ---------- */
   goTo(0);
 })();
