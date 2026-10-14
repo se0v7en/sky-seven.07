@@ -686,7 +686,7 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   background: #161616;
   color: #fff;
   border-radius: 4px;
-  padding: 36px 28px;
+  padding: 36px 40px;
   min-height: 380px;
   box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.12),
