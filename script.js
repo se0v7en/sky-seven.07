@@ -64,6 +64,21 @@
       musicBtn.textContent = '▶';
     }
   });
+   // ============ 尝试自动播放 ============
+// 页面加载时立刻尝试
+window.addEventListener('load', () => {
+  bgm.play().then(() => {
+    musicBtn.textContent = '❚❚';
+  }).catch(() => {
+    // 被浏览器拦截了，等用户第一次点击时再播放
+    document.addEventListener('click', function autoPlayOnce() {
+      bgm.play().then(() => {
+        musicBtn.textContent = '❚❚';
+      }).catch(() => {});
+      document.removeEventListener('click', autoPlayOnce);
+    }, { once: true });
+  });
+});
   bgm.addEventListener('play',  () => { musicBtn.textContent = '❚❚'; });
   bgm.addEventListener('pause', () => { musicBtn.textContent = '▶'; });
 
