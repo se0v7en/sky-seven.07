@@ -267,7 +267,7 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   grid-column: 1 / -1;
   grid-row: 2;
   font-size: 13px;
-  color: #000;
+  color: #FFFFFF;
   letter-spacing: 1.5px;
   text-shadow: 0 1px 6px rgba(255, 255, 255, 0.85);
   text-align: right;
