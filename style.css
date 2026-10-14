@@ -681,16 +681,20 @@ img[src]:not([src=""]) + .img-ph { display: none; }
 }
 
 /* 左侧黑块 */
+/* 全局统一声明盒模型后可以省略这里，如果仅当前模块需要则保留 */
 .p4-left-block {
+  box-sizing: border-box;
   position: relative;
   background: #161616;
   color: #fff;
   border-radius: 4px;
-  padding: 36px 40px;
+  /* 基础响应式内边距：小屏更小，大屏自动扩大 */
+  padding: clamp(24px, 5vw, 36px) clamp(20px, 5vw, 40px);
   min-height: 380px;
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.12),
-    0 12px 32px rgba(0, 0, 0, 0.18);
+  /* 限制最大宽度，避免大屏过宽影响阅读 */
+  max-width: 500px;
+  /* 合并阴影精简代码 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .p4-lt1 {
