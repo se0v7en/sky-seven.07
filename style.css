@@ -240,7 +240,7 @@ img[src]:not([src=""]) + .img-ph { display: none; }
   grid-row: 1;
   font-size: 26px;
   font-weight: 600;
-  color: #000;
+  color: #FFF;
   letter-spacing: 5px;
   text-shadow: 0 1px 6px rgba(255, 255, 255, 0.85);
   white-space: nowrap;
