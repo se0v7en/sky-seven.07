@@ -1,6 +1,5 @@
 /* ============================================
-   四页翻页 · 动态时间 · 音乐
-   （所有文字/图片都只能在 HTML 中修改）
+   四页翻页 · 动态时间 · 音乐（含自动播放）
    ============================================ */
 (function () {
   'use strict';
@@ -15,7 +14,9 @@
   let current = 0;
   const total = slides.length;
 
-  /* ---------- 翻页 ---------- */
+  /* ============================================
+     翻页
+     ============================================ */
   function goTo(index) {
     if (index < 0 || index >= total) return;
     slides.forEach((s, i) => s.classList.toggle('active', i === index));
@@ -35,13 +36,17 @@
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
 
-  /* ---------- 键盘方向键 ---------- */
+  /* ============================================
+     键盘方向键翻页
+     ============================================ */
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
     if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
   });
 
-  /* ---------- 动态时间（Aug 2020 自动变化） ---------- */
+  /* ============================================
+     动态时间（第二页 Aug 2020 自动变化）
+     ============================================ */
   function updateDate() {
     const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -51,37 +56,49 @@
   }
   updateDate();
 
-  /* ---------- 音乐播放 / 暂停 ---------- */
+  /* ============================================
+     音乐：播放 / 暂停
+     ============================================ */
   musicBtn.addEventListener('click', () => {
     if (bgm.paused) {
       bgm.play().then(() => {
         musicBtn.textContent = '❚❚';
       }).catch(() => {
-        // 浏览器阻止自动播放时，不做处理
+        // 浏览器阻止播放时不处理
       });
     } else {
       bgm.pause();
       musicBtn.textContent = '▶';
     }
   });
-   // ============ 尝试自动播放 ============
-// 页面加载时立刻尝试
-window.addEventListener('load', () => {
-  bgm.play().then(() => {
-    musicBtn.textContent = '❚❚';
-  }).catch(() => {
-    // 被浏览器拦截了，等用户第一次点击时再播放
-    document.addEventListener('click', function autoPlayOnce() {
-      bgm.play().then(() => {
-        musicBtn.textContent = '❚❚';
-      }).catch(() => {});
-      document.removeEventListener('click', autoPlayOnce);
-    }, { once: true });
-  });
-});
+
   bgm.addEventListener('play',  () => { musicBtn.textContent = '❚❚'; });
   bgm.addEventListener('pause', () => { musicBtn.textContent = '▶'; });
 
-  /* ---------- 初始化 ---------- */
+  /* ============================================
+     音乐：自动播放尝试
+     1) 页面加载时先尝试自动播放
+     2) 若被浏览器拦截，用户第一次点击任意位置时再播放
+     ============================================ */
+  window.addEventListener('load', () => {
+    bgm.play().then(() => {
+      musicBtn.textContent = '❚❚';
+    }).catch(() => {
+      // 被拦截 → 等用户第一次点击页面时播放
+      document.addEventListener('click', function autoPlayOnce() {
+        if (bgm.paused) {
+          bgm.play().then(() => {
+            musicBtn.textContent = '❚❚';
+          }).catch(() => {});
+        }
+        document.removeEventListener('click', autoPlayOnce);
+      }, { once: true });
+    });
+  });
+
+  /* ============================================
+     初始化
+     ============================================ */
   goTo(0);
+
 })();
