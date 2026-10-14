@@ -18,7 +18,8 @@
      翻页
      ============================================ */
   function goTo(index) {
-    if (index < 0 || index >= total) return;
+    // 新增边界拦截：当前页重复点击直接返回，避免无效执行
+    if (index < 0 || index >= total || index === current) return;
     slides.forEach((s, i) => s.classList.toggle('active', i === index));
     current = index;
 
@@ -33,13 +34,16 @@
     slides[index].scrollTop = 0;
   }
 
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
+  // 新增DOM非空判断，避免元素缺失时报错中断
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
   /* ============================================
      键盘方向键翻页
      ============================================ */
   document.addEventListener('keydown', e => {
+    // 新增输入框场景判断，避免输入文字时误触翻页
+    if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
     if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
   });
@@ -55,11 +59,13 @@
     if (el) el.textContent = `${MONTHS[now.getMonth()]} ${now.getFullYear()}`;
   }
   updateDate();
+  // 新增每分钟自动刷新时间，避免长时间打开页面时间显示滞后
+  setInterval(updateDate, 60 * 1000);
 
   /* ============================================
      音乐：播放 / 暂停
      ============================================ */
-  musicBtn.addEventListener('click', () => {
+  if (musicBtn) musicBtn.addEventListener('click', () => {
     if (bgm.paused) {
       bgm.play().then(() => {
         musicBtn.textContent = '❚❚';
@@ -74,6 +80,8 @@
 
   bgm.addEventListener('play',  () => { musicBtn.textContent = '❚❚'; });
   bgm.addEventListener('pause', () => { musicBtn.textContent = '▶'; });
+  // 新增音乐循环播放
+  bgm.loop = true;
 
   /* ============================================
      音乐：自动播放尝试
@@ -88,17 +96,3 @@
       document.addEventListener('click', function autoPlayOnce() {
         if (bgm.paused) {
           bgm.play().then(() => {
-            musicBtn.textContent = '❚❚';
-          }).catch(() => {});
-        }
-        document.removeEventListener('click', autoPlayOnce);
-      }, { once: true });
-    });
-  });
-
-  /* ============================================
-     初始化
-     ============================================ */
-  goTo(0);
-
-})();
